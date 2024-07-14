@@ -6,11 +6,13 @@ const App = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (item) => {
-    const itemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    const itemInCart = cartItems.find(
+      (cartItem) => cartItem.name === item.name
+    );
     if (itemInCart) {
       setCartItems((prevItems) =>
         prevItems.map((cartItem) =>
-          cartItem.id === item.id
+          cartItem.name === item.name
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         )
@@ -21,9 +23,14 @@ const App = () => {
   };
 
   const removeFromCart = (item) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((cartItem) => cartItem.id !== item.id)
+    const itemInCart = cartItems.find(
+      (cartItem) => cartItem.name === item.name
     );
+    if (itemInCart.quantity) {
+      setCartItems((prevItems) =>
+        prevItems.filter((cartItem) => cartItem.name !== item.name)
+      );
+    }
   };
 
   return (
