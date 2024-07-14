@@ -8,11 +8,7 @@ const Cards = ({ addToCart }) => {
       {list.map((item, index) => (
         <li key={index}>
           <div className="relative">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="rounded-xl hover:border-2 hover:border-rose-500"
-            />
+            <img src={item.image} alt={item.name} className="rounded-xl " />
             <Button onClick={() => addToCart(item)} />
           </div>
           <div className="mt-9 mb-3 text-start">

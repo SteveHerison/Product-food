@@ -26,7 +26,7 @@ const App = () => {
     const itemInCart = cartItems.find(
       (cartItem) => cartItem.name === item.name
     );
-    if (itemInCart.quantity) {
+    if (itemInCart.quantity === 1) {
       setCartItems((prevItems) =>
         prevItems.filter((cartItem) => cartItem.name !== item.name)
       );
