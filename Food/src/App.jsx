@@ -26,7 +26,7 @@ const App = () => {
     const itemInCart = cartItems.find(
       (cartItem) => cartItem.name === item.name
     );
-    if (itemInCart.quantity === 1) {
+    if (itemInCart.quantity) {
       setCartItems((prevItems) =>
         prevItems.filter((cartItem) => cartItem.name !== item.name)
       );
@@ -38,7 +38,7 @@ const App = () => {
       <section className="h-full w-full">
         <h1 className="text-3xl">Desserts</h1>
         <div className="flex justify-center items-center mt-7">
-          <Cards addToCart={addToCart} />
+          <Cards addToCart={addToCart} itemInCart={cartItems} />
         </div>
         <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
       </section>

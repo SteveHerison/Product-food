@@ -1,5 +1,6 @@
 import Ilust from "../../assets/images/illustration-empty-cart.svg";
 import Remove from "../../assets/images/icon-remove-item.svg";
+import Carbon from "../../assets/images/icon-carbon-neutral.svg";
 import PropTypes from "prop-types";
 
 const Cart = ({ cartItems, removeFromCart }) => {
@@ -10,10 +11,12 @@ const Cart = ({ cartItems, removeFromCart }) => {
   return (
     <div className="p-4 w-full h-auto bg-red-200 bg-rose-50 rounded-xl flex flex-col">
       <strong className="text-xl text-red">{`Your cart (${cartItems.length})`}</strong>
-      <div className="flex flex-col">
+      <div
+        className={`flex flex-col ${!cartItems.length ? "items-center" : ""}`}
+      >
         {cartItems.length === 0 ? (
           <>
-            <img src={Ilust} alt="" className="h-40 w-40" />
+            <img src={Ilust} alt="Empty Cart" className="h-40 w-40" />
             <strong className="text-rose-500">
               Your added items will appear here
             </strong>
@@ -38,23 +41,32 @@ const Cart = ({ cartItems, removeFromCart }) => {
                       ).toFixed(2)}`}</p>
                     </span>
                   </div>
-
                   <button onClick={() => removeFromCart(item)}>
                     <img
                       src={Remove}
-                      alt=""
+                      alt="Remove Item"
                       className="border rounded-full p-1 border-rose-300"
                     />
                   </button>
                 </li>
               ))}
             </ul>
-            <div className="mt-5 flex justify-between w-full">
+            <div className="my-5 flex justify-between w-full ">
               <p>Order Total</p>
               <strong className="text-xl text-red">
                 ${calculateTotal().toFixed(2)}
               </strong>
             </div>
+
+            <div className="m-4 bg-rose-100 p-4 rounded-xl gap-2 flex items-center justify-center">
+              <img src={Carbon} alt="" />
+              <span className="text-sm">
+                This is a <strong>carbon-neutral</strong> delivery
+              </span>
+            </div>
+            <button className="bg-red rounded-full mx-4 p-3 text-white my-2">
+              Confirm Order
+            </button>
           </>
         )}
       </div>
